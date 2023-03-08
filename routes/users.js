@@ -10,9 +10,15 @@ usersRouter.get("/", (req, res, next) => {
 
 usersRouter.use(express.urlencoded()); // for form data
 usersRouter.post("/", (req, res, next) => {
-  if (req.body.name) {
-    userList.append({ name: req.body.name, id: userList.length + 1 });
-    res.status(200).redirect("/users");
+  try {
+    if (req.body.name) {
+      userList.concat({ name: req.body.name, id: userList.length + 1 });
+      res.status(200).redirect("/users");
+    } else {
+      res.status(418).send("Wrong input format");
+    }
+  } catch {
+    res.send(500).send("Internal server error");
   }
 });
 
