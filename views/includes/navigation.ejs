@@ -6,6 +6,8 @@
       <a href="/">Add user</a>
     </li>
     <li><a href="/users">User list</a></li>
-    <li><a href="/users/delete-all-users">Delete all users</a></li>
+    <form action="/users/delete-all-users" method="POST">
+      <button>Delete all users</button>
+    </form>
   </ul>
 </nav>

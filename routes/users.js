@@ -2,18 +2,19 @@ const express = require("express");
 
 const usersRouter = express.Router();
 
-const userList = [{ name: "Sanjar" }];
+const usersList = [{ name: "Sanjar" }];
+console.log("Ran route");
 
 usersRouter.get("/", (req, res, next) => {
-  res.render("users");
+  res.render("users", { usersList });
 });
 
 usersRouter.use(express.urlencoded()); // for form data
 usersRouter.post("/", (req, res, next) => {
   try {
     if (req.body.name) {
-      userList.concat({ name: req.body.name, id: userList.length + 1 });
-      res.status(200).redirect("/users");
+      usersList.push({ name: req.body.name, id: usersList.length + 1 });
+      res.status(200).redirect("/");
     } else {
       res.status(418).send("Wrong input format");
     }
@@ -22,8 +23,8 @@ usersRouter.post("/", (req, res, next) => {
   }
 });
 
-usersRouter.post("/delete-all", (req, res, next) => {
-  while (userList.length) userList.pop();
+usersRouter.post("/delete-all-users", (req, res, next) => {
+  while (usersList.length) usersList.pop();
   res.redirect("/");
 });
 
