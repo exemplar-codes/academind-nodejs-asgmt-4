@@ -9,7 +9,7 @@ app.set("view engine", "ejs");
 // app.set('views') // not needed
 
 app.use("/users", usersRouter);
-app.use(indexRouter);
+app.use("/", indexRouter);
 
 app.use((req, res, next) => {
   res.render("404-page");
