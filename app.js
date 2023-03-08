@@ -5,6 +5,7 @@ const app = express();
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 
+app.use(express.static("public"));
 app.set("view engine", "ejs");
 // app.set('views') // not needed
 
